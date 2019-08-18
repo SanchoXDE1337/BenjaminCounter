@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Benjamin Counter</title>
+	<style type="text/css">
+		.calc {
+			margin-top: 50px;
+			padding: 0 500px 0px 630px;
+		}
+
+		h1{
+			font-size: 32px;
+			font-family: 'Anonymouse-Pro';
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<div class="calc">
+		<input type="text" id='first' name="num1" size="5">
+		<select id="chars">
+  			<option name="plus" value="+">+</option>
+  			<option name="minus" value="-">-</option>
+  			<option name="mult" value="*">*</option>
+  			<option name="divide" value="/">/</option>
+		</select>
+		<input type="text" id='second' name="num2" size="5">
+		<input type="button" id='butt' name="btn" value="=" >
+		<span class="result"></span>
+	</div>
+</body>
+<script type="text/javascript">
+	test = function() {
+		var num1 = document.querySelector('input[name=num1]');
+		var num2 = document.querySelector('input[name=num2]');
+		var char = chars.selectedIndex;
+		var span = document.querySelector('.result');
+		var result = 0;
+
+		if (char == 0) {
+			result = parseInt(num1.value) + parseInt(num2.value);
+		} else if (char == 1) {
+			result = parseInt(num1.value) - parseInt(num2.value);
+		} else if (char == 2) {
+			result = parseInt(num1.value) * parseInt(num2.value);
+		} else if (char == 3) {
+			result = parseInt(num1.value) / parseInt(num2.value);
+		}
+		if (Number.isInteger(result)) {
+			span.innerHTML = result;	
+		} else{
+			span.innerHTML = result.toFixed(3);
+		}
+
+	}
+
+
+	handler = function() {
+		butt.disabled = false;
+	}
+
+	first.addEventListener('change', handler);
+	second.addEventListener('change', handler);
+	chars.addEventListener('change', handler);
+
+	var btnRes = document.querySelector('input[name=btn]');
+	btnRes.onclick = function () {
+		test();
+		btnRes.disabled = true;
+	}
+</script>
+</html>
